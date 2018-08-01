@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Create folder structure and git submodule for libft
+mkdir inc src && git submodule add https://github.com/nkouris/42libft.git lib && git submodule init && cp lib/.gitignore . && echo __initproj__ >> .gitignore
+
+# Create header file
+basedir=${PWD##*/}
+up_dir=$(echo "$basedir" | tr '[:lower:]' '[:upper:]')
+printf "%s %s\n%s %s\n\n%s\n%s\n" "#ifndef" ${up_dir} "# define" ${up_dir} "# include \"libft.h\"" "#endif" > ${basedir}.h
+mv ${basedir}.h inc/
+echo 'nkouris' > author
